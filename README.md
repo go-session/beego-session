@@ -1,6 +1,6 @@
 # Session middleware for [Beego](https://github.com/astaxie/beego)
 
-[![ReportCard][reportcard-image]][reportcard-url] [![GoDoc][godoc-image]][godoc-url] [![License][license-image]][license-url]
+[![Build][Build-Status-Image]][Build-Status-Url] [![Coverage][Coverage-Image]][Coverage-Url] [![ReportCard][reportcard-image]][reportcard-url] [![GoDoc][godoc-image]][godoc-url] [![License][license-image]][license-url]
 
 ## Quick Start
 
@@ -78,6 +78,10 @@ $ ./server
 
     Copyright (c) 2018 Lyric
 
+[Build-Status-Url]: https://travis-ci.org/go-session/beego-session
+[Build-Status-Image]: https://travis-ci.org/go-session/beego-session.svg?branch=master
+[Coverage-Url]: https://coveralls.io/github/go-session/beego-session?branch=master
+[Coverage-Image]: https://coveralls.io/repos/github/go-session/beego-session/badge.svg?branch=master
 [reportcard-url]: https://goreportcard.com/report/github.com/go-session/beego-session
 [reportcard-image]: https://goreportcard.com/badge/github.com/go-session/beego-session
 [godoc-url]: https://godoc.org/github.com/go-session/beego-session
