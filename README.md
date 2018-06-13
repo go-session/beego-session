@@ -7,7 +7,7 @@
 ### Download and install
 
 ```bash
-$ go get -u -v gopkg.in/go-session/beego-session.v3
+$ go get -u -v github.com/go-session/beego-session
 ```
 
 ### Create file `server.go`
@@ -20,8 +20,8 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	"gopkg.in/go-session/beego-session.v3"
-	"gopkg.in/session.v3"
+	"github.com/go-session/beego-session"
+	"github.com/go-session/session"
 )
 
 func main() {

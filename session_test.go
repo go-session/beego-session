@@ -9,7 +9,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	"gopkg.in/session.v3"
+	"github.com/go-session/session"
 )
 
 func TestSession(t *testing.T) {
