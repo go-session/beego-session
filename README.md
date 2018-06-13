@@ -1,13 +1,13 @@
 # Session middleware for [Beego](https://github.com/astaxie/beego)
 
-[![Build][Build-Status-Image]][Build-Status-Url] [![Coverage][Coverage-Image]][Coverage-Url] [![ReportCard][reportcard-image]][reportcard-url] [![GoDoc][godoc-image]][godoc-url] [![License][license-image]][license-url]
+[![Build][Build-Status-Image]][Build-Status-Url] [![Codecov][codecov-image]][codecov-url] [![ReportCard][reportcard-image]][reportcard-url] [![GoDoc][godoc-image]][godoc-url] [![License][license-image]][license-url]
 
 ## Quick Start
 
 ### Download and install
 
 ```bash
-$ go get -u -v github.com/go-session/beego-session
+$ go get -u -v gopkg.in/go-session/beego-session.v2
 ```
 
 ### Create file `server.go`
@@ -20,7 +20,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	"github.com/go-session/beego-session"
+	"gopkg.in/go-session/beego-session.v2"
 	"gopkg.in/session.v2"
 )
 
@@ -80,8 +80,8 @@ $ ./server
 
 [Build-Status-Url]: https://travis-ci.org/go-session/beego-session
 [Build-Status-Image]: https://travis-ci.org/go-session/beego-session.svg?branch=master
-[Coverage-Url]: https://coveralls.io/github/go-session/beego-session?branch=master
-[Coverage-Image]: https://coveralls.io/repos/github/go-session/beego-session/badge.svg?branch=master
+[codecov-url]: https://codecov.io/gh/go-session/beego-session
+[codecov-image]: https://codecov.io/gh/go-session/beego-session/branch/master/graph/badge.svg
 [reportcard-url]: https://goreportcard.com/report/github.com/go-session/beego-session
 [reportcard-image]: https://goreportcard.com/badge/github.com/go-session/beego-session
 [godoc-url]: https://godoc.org/github.com/go-session/beego-session
