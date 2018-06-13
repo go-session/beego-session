@@ -5,30 +5,31 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	"gopkg.in/session.v2"
+	"gopkg.in/session.v3"
+)
+
+type (
+	// ErrorHandleFunc error handling function
+	ErrorHandleFunc func(*context.Context, error)
+	// Config defines the config for Session middleware
+	Config struct {
+		// error handling when starting the session
+		ErrorHandleFunc ErrorHandleFunc
+	}
+	storeKey struct{}
 )
 
 var (
 	once            sync.Once
 	internalManager *session.Manager
-	internalError   ErrorHandleFunc
-)
 
-type sessionKey struct{}
-
-func init() {
-	internalError = func(ctx *context.Context, err error) {
-		ctx.Abort(500, err.Error())
+	// DefaultConfig is the default Recover middleware config.
+	DefaultConfig = Config{
+		ErrorHandleFunc: func(ctx *context.Context, err error) {
+			ctx.Abort(500, err.Error())
+		},
 	}
-}
-
-// ErrorHandleFunc error handling function
-type ErrorHandleFunc func(ctx *context.Context, err error)
-
-// SetErrorHandler Set error handling
-func SetErrorHandler(handler ErrorHandleFunc) {
-	internalError = handler
-}
+)
 
 func manager(opt ...session.Option) *session.Manager {
 	once.Do(func() {
@@ -37,21 +38,30 @@ func manager(opt ...session.Option) *session.Manager {
 	return internalManager
 }
 
-// New Create a session middleware
+// New create a session middleware
 func New(opt ...session.Option) beego.FilterFunc {
+	return NewWithConfig(DefaultConfig, opt...)
+}
+
+// NewWithConfig create a session middleware
+func NewWithConfig(config Config, opt ...session.Option) beego.FilterFunc {
+	if config.ErrorHandleFunc == nil {
+		config.ErrorHandleFunc = DefaultConfig.ErrorHandleFunc
+	}
+
 	return func(ctx *context.Context) {
 		store, err := manager(opt...).Start(nil, ctx.ResponseWriter, ctx.Request)
 		if err != nil {
-			internalError(ctx, err)
+			config.ErrorHandleFunc(ctx, err)
 			return
 		}
-		ctx.Input.SetData(sessionKey{}, store)
+		ctx.Input.SetData(storeKey{}, store)
 	}
 }
 
 // FromContext Get session storage from context
 func FromContext(ctx *context.Context) session.Store {
-	store := ctx.Input.GetData(sessionKey{})
+	store := ctx.Input.GetData(storeKey{})
 	if store != nil {
 		return store.(session.Store)
 	}

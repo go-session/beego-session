@@ -7,7 +7,7 @@
 ### Download and install
 
 ```bash
-$ go get -u -v gopkg.in/go-session/beego-session.v2
+$ go get -u -v gopkg.in/go-session/beego-session.v3
 ```
 
 ### Create file `server.go`
@@ -20,19 +20,14 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
-	"gopkg.in/go-session/beego-session.v2"
-	"gopkg.in/session.v2"
+	"gopkg.in/go-session/beego-session.v3"
+	"gopkg.in/session.v3"
 )
 
 func main() {
 	app := beego.NewApp()
 
-	app.Handlers.InsertFilter("*", beego.BeforeRouter,
-		beegosession.New(
-			session.SetCookieName("session_id"),
-			session.SetSign([]byte("sign")),
-		),
-	)
+	app.Handlers.InsertFilter("*", beego.BeforeRouter, beegosession.New())
 
 	app.Handlers.Get("/", func(ctx *context.Context) {
 		store := beegosession.FromContext(ctx)

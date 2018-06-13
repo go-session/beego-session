@@ -1,6 +1,6 @@
 language: go
 sudo: false
-go_import_path: gopkg.in/go-session/beego-session.v2
+go_import_path: gopkg.in/go-session/beego-session.v3
 go:
   - 1.9
 before_install:
