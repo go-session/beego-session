@@ -21,7 +21,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/context"
 	"github.com/go-session/beego-session"
-	"github.com/go-session/session"
 )
 
 func main() {
