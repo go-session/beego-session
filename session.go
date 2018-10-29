@@ -57,12 +57,12 @@ func FromContext(ctx *context.Context) session.Store {
 
 // Destroy a session
 func Destroy(ctx *context.Context) error {
-	return ctx.Input.GetData(storeKey{}).(*session.Manager).
+	return ctx.Input.GetData(manageKey{}).(*session.Manager).
 		Destroy(nil, ctx.ResponseWriter, ctx.Request)
 }
 
 // Refresh a session and return to session storage
 func Refresh(ctx *context.Context) (session.Store, error) {
-	return ctx.Input.GetData(storeKey{}).(*session.Manager).
+	return ctx.Input.GetData(manageKey{}).(*session.Manager).
 		Refresh(nil, ctx.ResponseWriter, ctx.Request)
 }
